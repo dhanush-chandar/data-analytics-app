@@ -1,40 +1,36 @@
 pipeline {
-    agent any  // This means the pipeline can run on any available Jenkins agent
+    agent any
 
     stages {
-        // Stage 1: Build
         stage('Build') {
             steps {
                 script {
-                    // Install the dependencies specified in requirements.txt
-                    sh 'pip install -r requirements.txt'
+                    // Set up the virtual environment and install dependencies
+                    sh 'python3 -m venv venv'  // Create a virtual environment
+                    sh 'source venv/bin/activate && pip install -r requirements.txt'  // Activate and install dependencies
                 }
             }
         }
-
-        // Stage 2: Test
         stage('Test') {
             steps {
-                // Run Pytest tests
-                sh 'pytest'
+                script {
+                    // Run Pytest tests within the virtual environment
+                    sh 'source venv/bin/activate && pytest'
+                }
             }
         }
-
-        // Stage 3: Docker Build
         stage('Docker Build') {
             steps {
                 script {
-                    // Build the Docker image using the Dockerfile
+                    // Build the Docker image
                     docker.build('my-python-app:latest')
                 }
             }
         }
-
-        // Stage 4: Deploy to Minikube
         stage('Deploy to Minikube') {
             steps {
                 script {
-                    // Deploy the application using kubectl
+                    // Deploy application using kubectl
                     sh 'kubectl apply -f k8s/deployment.yaml'
                 }
             }

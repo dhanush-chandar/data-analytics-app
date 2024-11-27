@@ -8,7 +8,7 @@ pipeline {
                     // Create a virtual environment
                     sh 'python3 -m venv venv'
                     
-                    // Activate the virtual environment using bash
+                    // Activate the virtual environment and install dependencies
                     sh 'bash -c "source venv/bin/activate && pip install -r requirements.txt"'
                 }
             }
@@ -16,7 +16,10 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Run the tests using pytest
+                    // Verify pytest is installed and available
+                    sh 'bash -c "source venv/bin/activate && pip list"'
+                    
+                    // Run tests using pytest
                     sh 'bash -c "source venv/bin/activate && pytest"'
                 }
             }

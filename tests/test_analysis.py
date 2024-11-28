@@ -3,7 +3,7 @@ import pandas as pd
 from unittest.mock import patch
 
 # Define the function in the test file
-def run_analysis():
+def test_run_analysis():
     # Load data
     data = pd.read_csv('data/sample.csv')
     

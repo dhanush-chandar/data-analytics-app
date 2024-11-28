@@ -3,7 +3,7 @@ import pandas as pd
 from unittest.mock import patch
 
 # Define the function in the test file
-def test_run_analysis():
+def run_analysis():
     # Load data
     data = pd.read_csv('data/sample.csv')
     
@@ -24,7 +24,7 @@ def test_run_analysis(mock_read_csv):
     mock_read_csv.return_value = mock_data
 
     # Call the function
-    result = test_run_analysis()
+    result = run_analysis()
 
     # Assert that the mean value is calculated correctly
     assert result['mean'] == 30  # (10 + 20 + 30 + 40 + 50) / 5 = 30

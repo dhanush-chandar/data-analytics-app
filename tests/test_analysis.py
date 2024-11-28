@@ -24,7 +24,7 @@ def test_run_analysis(mock_read_csv):
     mock_read_csv.return_value = mock_data
 
     # Call the function
-    result = run_analysis()
+    result = test_run_analysis()
 
     # Assert that the mean value is calculated correctly
     assert result['mean'] == 30  # (10 + 20 + 30 + 40 + 50) / 5 = 30

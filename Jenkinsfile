@@ -27,7 +27,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build('data-analytics-app')
+                    docker.build('data-analytics-app', '.')
                 }
             }
         }

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: data-analytics-app  # Name of the container
-        image: data-analytics-app  # Replace with your actual image name
+        image: data-analytics-app:latest  # Replace with your actual image name
         imagePullPolicy: Never
         ports:
         - containerPort: 5000  # Port the container exposes
